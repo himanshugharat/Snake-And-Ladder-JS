@@ -38,20 +38,24 @@ function randomOptionGenerator() {
  */
 function playerOptionCheck() {
   let options = randomOptionGenerator();
+  let diceRoll = dieRoll();
   switch (options) {
     case 1:
-      position = position + dieRoll();
+      let placeResult = position + diceRoll;
+      if (placeResult <= 100) position = position + diceRoll;
+      else position = position;
       break;
     case 2:
-      let result = position - dieRoll();
-      if (result > 0) position = position - dieRoll();
+      let place = position - diceRoll;
+      if (place > 0) position = position - diceRoll;
       else position = position;
       break;
     case 3:
       position = position;
+      break;
   }
 }
-while (position<100) {
+while (position < 100) {
   playerOptionCheck();
 }
 console.log(position);
