@@ -13,6 +13,7 @@ const startPosition = 0;
 
 //varables
 let position = startPosition;
+let countOfDieRolled=0
 
 /**
  * @description: create a die roll function for 1 to 6 output
@@ -42,20 +43,33 @@ function playerOptionCheck() {
   switch (options) {
     case 1:
       let placeResult = position + diceRoll;
-      if (placeResult <= 100) position = position + diceRoll;
-      else position = position;
+      if (placeResult <= 100) {
+        position = position + diceRoll;
+        console.log(`after the ladder you are at ${position}`);
+      } else {
+        position = position;
+        console.log(`at same postion ${position}`);
+      }
       break;
     case 2:
       let place = position - diceRoll;
-      if (place > 0) position = position - diceRoll;
-      else position = position;
+      if (place > 0) {
+        position = position - diceRoll;
+        console.log(`after the snake bite you are at ${position}`);
+      } else {
+        position = position;
+        console.log(`at same position ${position}`);
+      }
       break;
     case 3:
       position = position;
+      console.log(`at same position noplay option ${position}`);
       break;
   }
 }
 while (position < 100) {
+    countOfDieRolled++
   playerOptionCheck();
 }
 console.log(position);
+console.log(`the total number of diece rolled are ${countOfDieRolled}`);
