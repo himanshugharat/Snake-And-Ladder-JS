@@ -10,3 +10,11 @@
 
 //constant
 const startPosition = 0;
+
+/**
+ * @description: create a die roll function for 1 to 6 output
+ * @returns: die roll
+ */
+function dieRoll() {
+  return Math.floor((Math.random() * 10) % 6) + 1;
+}
