@@ -51,5 +51,7 @@ function playerOptionCheck() {
       position = position;
   }
 }
-playerOptionCheck();
+while (position<100) {
+  playerOptionCheck();
+}
 console.log(position);
