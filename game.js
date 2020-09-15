@@ -10,10 +10,14 @@
 
 //constant
 const startPosition = 0;
+const winningPlace = 100;
 
 //varables
 let position = startPosition;
-let countOfDieRolled=0
+let countOfDiePlayer1 = 0;
+let countOfDiePlayer2 = 0;
+let player1Position = startPosition;
+let player2Position = startPosition;
 
 /**
  * @description: create a die roll function for 1 to 6 output
@@ -37,15 +41,17 @@ function randomOptionGenerator() {
  *               for nove places of ladder snake or normal move.
  * @returns: die roll
  */
-function playerOptionCheck() {
+function playerOptionCheck(currentPosition) {
   let options = randomOptionGenerator();
   let diceRoll = dieRoll();
+  position = currentPosition;
   switch (options) {
     case 1:
       let placeResult = position + diceRoll;
       if (placeResult <= 100) {
         position = position + diceRoll;
         console.log(`after the ladder you are at ${position}`);
+        playerOptionCheck(position);
       } else {
         position = position;
         console.log(`at same postion ${position}`);
@@ -66,10 +72,24 @@ function playerOptionCheck() {
       console.log(`at same position noplay option ${position}`);
       break;
   }
+  return position;
 }
-while (position < 100) {
-    countOfDieRolled++
-  playerOptionCheck();
+function game() {
+  while (true) {
+    if (player1Position == winningPlace || player2Position == winningPlace) {
+      break;
+    } else {
+      countOfDiePlayer1++;
+      player1Position = playerOptionCheck(player1Position);
+      countOfDiePlayer2++;
+      player2Position = playerOptionCheck(player2Position);
+    }
+  }
 }
-console.log(position);
-console.log(`the total number of diece rolled are ${countOfDieRolled}`);
+function winningPlayer() {
+  player1Position == winningPlace
+    ? console.log("player 1 won and has die count" + countOfDiePlayer1)
+    : console.log("player 1 won and has die count" + countOfDiePlayer1);
+}
+game();
+winningPlayer();
